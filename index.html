@@ -1,0 +1,389 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>50 Startups Investment Analysis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="#overview" aria-label="50 Startups dashboard home">
+      <span class="brand-mark">50</span>
+      <span>Startup Analytics</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#overview" class="nav-link active" data-page="overview">Overview</a>
+      <a href="#workflow" class="nav-link" data-page="workflow">Workflow</a>
+      <a href="#dashboard" class="nav-link" data-page="dashboard">Dashboard</a>
+      <a href="#model-analysis" class="nav-link" data-page="model-analysis">Model Analysis</a>
+      <a href="#prediction" class="nav-link" data-page="prediction">Prediction</a>
+      <a href="#takeaways" class="nav-link" data-page="takeaways">Takeaways</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="overview" class="page-section active-page">
+      <div class="hero-section hero-showcase">
+        <div class="hero-visual" aria-hidden="true">
+          <canvas id="heroCanvas"></canvas>
+        </div>
+        <div class="hero-bg-shapes" aria-hidden="true">
+          <span class="shape shape-one"></span>
+          <span class="shape shape-two"></span>
+          <span class="shape shape-three"></span>
+          <span class="line line-one"></span>
+          <span class="line line-two"></span>
+        </div>
+        <div class="hero-shell hero-content reveal">
+          <div class="hero-text">
+            <p class="eyebrow">AI Business Intelligence Platform</p>
+            <h1>50 Startups<br>Investment Analysis</h1>
+            <p class="hero-subtitle">Machine Learning Powered Profit Prediction Dashboard</p>
+            <p class="hero-copy">Analyze R&D investment, marketing spending, and profit performance across 50 startups through business intelligence and machine learning.</p>
+            <div class="hero-actions">
+              <a class="primary-action nav-link" href="#dashboard" data-page="dashboard">Explore Dashboard</a>
+              <a class="secondary-action nav-link" href="#prediction" data-page="prediction">Try Prediction</a>
+            </div>
+          </div>
+
+          <div class="hero-mockup-wrap" aria-label="Product dashboard preview">
+            <aside class="hero-secondary-mockup secondary-top">
+              <small>Correlation Analysis</small>
+              <strong>R&D to Profit</strong>
+              <div class="mini-matrix">
+                <i></i><i></i><i></i>
+                <i></i><i></i><i></i>
+                <i></i><i></i><i></i>
+              </div>
+            </aside>
+
+            <aside class="hero-secondary-mockup secondary-bottom">
+              <small>Prediction Simulator</small>
+              <strong>$150,043</strong>
+              <span>Projected profit</span>
+              <div class="mini-progress"><i></i></div>
+            </aside>
+
+            <aside class="hero-main-mockup">
+              <div class="mockup-browser">
+                <span></span><span></span><span></span>
+                <strong>Startup Analytics</strong>
+              </div>
+              <div class="mockup-banner">
+                <div>
+                  <small>AI Profit Intelligence</small>
+                  <h3>Startup Investment Intelligence</h3>
+                  <p>Profit Prediction powered by Linear Regression</p>
+                </div>
+                <div class="hero-mini-chart hero-donut"><span></span></div>
+              </div>
+              <div class="hero-kpi-row">
+                <div><small>Total Startups</small><strong>50</strong></div>
+                <div><small>Avg Profit</small><strong>$112K</strong></div>
+                <div><small>Accuracy</small><strong>95%</strong></div>
+              </div>
+              <div class="mockup-grid">
+                <div class="hero-mini-chart hero-bar">
+                  <small>Feature Importance</small>
+                  <i style="height:82%"></i><i style="height:56%"></i><i style="height:34%"></i><i style="height:68%"></i>
+                </div>
+                <div class="hero-mini-chart hero-line">
+                  <small>Profit Trend</small>
+                  <svg viewBox="0 0 260 116" role="img" aria-label="Profit trend preview">
+                    <polyline points="8,92 48,78 88,84 132,48 178,56 238,26"></polyline>
+                    <circle cx="238" cy="26" r="5"></circle>
+                  </svg>
+                </div>
+                <div class="hero-mini-chart hero-scatter">
+                  <small>Scatter Plot</small>
+                  <span style="left:16%; bottom:24%"></span><span style="left:30%; bottom:38%"></span><span style="left:48%; bottom:48%"></span><span style="left:66%; bottom:68%"></span><span style="left:82%; bottom:76%"></span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+
+      <div class="section soft-section">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">Overview</p>
+            <h2>Executive KPI Dashboard</h2>
+          </div>
+        </div>
+        <div class="kpi-grid reveal">
+          <article class="kpi-card"><div class="kpi-top"><span class="kpi-icon">01</span><em>+6.2%</em></div><span>Total Startups</span><strong data-counter="50">0</strong></article>
+          <article class="kpi-card"><div class="kpi-top"><span class="kpi-icon profit">02</span><em>+12.8%</em></div><span>Average Profit</span><strong data-money-counter="112012">$0</strong></article>
+          <article class="kpi-card"><div class="kpi-top"><span class="kpi-icon rd">03</span><em>+18.4%</em></div><span>Average R&D Spend</span><strong data-money-counter="73722">$0</strong></article>
+          <article class="kpi-card"><div class="kpi-top"><span class="kpi-icon model">04</span><em>+4.2%</em></div><span>Model Accuracy</span><strong data-decimal-counter="0.95">0.00</strong></article>
+        </div>
+
+        <div class="section-subblock reveal">
+          <div class="section-heading compact-heading">
+            <div>
+              <p class="eyebrow">Executive Summary</p>
+              <h2>Investment Drivers at a Glance</h2>
+            </div>
+          </div>
+          <div class="summary-grid">
+            <article class="summary-card">
+              <span class="summary-icon">01</span>
+              <small>Core Driver</small>
+              <h3>R&D Spend</h3>
+              <strong>Correlation = 0.973</strong>
+            </article>
+            <article class="summary-card">
+              <span class="summary-icon green">02</span>
+              <small>Growth Amplifier</small>
+              <h3>Marketing Spend</h3>
+              <strong>Correlation = 0.748</strong>
+            </article>
+            <article class="summary-card">
+              <span class="summary-icon muted">03</span>
+              <small>Weak Predictor</small>
+              <h3>Administration</h3>
+              <strong>Correlation = 0.201</strong>
+            </article>
+          </div>
+        </div>
+
+        <div class="section-subblock reveal">
+          <div class="section-heading compact-heading">
+            <div>
+              <p class="eyebrow">Investment Impact Matrix</p>
+              <h2>Impact vs Predictive Strength</h2>
+            </div>
+          </div>
+          <div class="impact-matrix">
+            <div class="axis y-axis">High Impact</div>
+            <div class="axis x-axis">High Predictability</div>
+            <div class="quadrant q1"><strong>R&D Spend</strong><span>High impact, high predictability</span></div>
+            <div class="quadrant q2"><strong>Marketing Spend</strong><span>Growth amplifier</span></div>
+            <div class="quadrant q3"><strong>Administration</strong><span>Lower direct signal</span></div>
+            <div class="quadrant q4"><strong>State</strong><span>Minimal model effect</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow" class="section band page-section">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">CRISP-DM</p>
+          <h2>Analytics Workflow</h2>
+        </div>
+      </div>
+      <div class="timeline reveal">
+        <div><b>01</b><i>BU</i><strong>Business Understanding</strong><span>Define investment goals and profit questions.</span></div>
+        <div><b>02</b><i>DU</i><strong>Data Understanding</strong><span>Explore spend patterns and business signals.</span></div>
+        <div><b>03</b><i>DP</i><strong>Data Preparation</strong><span>Prepare clean features for analytics.</span></div>
+        <div><b>04</b><i>ML</i><strong>Modeling</strong><span>Train machine learning profit models.</span></div>
+        <div><b>05</b><i>EV</i><strong>Evaluation</strong><span>Validate accuracy and feature impact.</span></div>
+        <div><b>06</b><i>GO</i><strong>Deployment</strong><span>Deliver dashboard and prediction workflow.</span></div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="section soft-section page-section">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">Business Intelligence</p>
+          <h2>Data Analytics Dashboard</h2>
+        </div>
+      </div>
+      <div class="dashboard-grid reveal">
+        <div class="dashboard-kpi-row">
+          <article class="mini-kpi"><span>Profit Growth</span><strong>+12.8%</strong><small>vs baseline</small></article>
+          <article class="mini-kpi"><span>Primary Driver</span><strong>R&D</strong><small>0.973 corr</small></article>
+          <article class="mini-kpi"><span>Records</span><strong>50</strong><small>startup sample</small></article>
+          <article class="mini-kpi"><span>Model Score</span><strong>0.95</strong><small>R2 estimate</small></article>
+        </div>
+        <article class="panel large chart-card wide-chart dashboard-main-chart">
+          <div class="panel-heading"><h3>R&D Spend vs Profit</h3><span>Pearson 0.973</span></div>
+          <div class="chart-wrapper"><div id="scatterChart" class="plotly-chart"></div></div>
+        </article>
+        <article class="panel result-panel model-summary">
+          <div class="panel-heading"><h3>Model Summary</h3><span>Linear Regression</span></div>
+          <div>
+            <span class="metric-label">Primary Driver</span>
+            <strong>R&D Spend</strong>
+            <small>Pearson correlation: 0.973</small>
+          </div>
+          <div>
+            <span class="metric-label">Secondary Driver</span>
+            <strong>Marketing Spend</strong>
+            <small>Pearson correlation: 0.748</small>
+          </div>
+          <div>
+            <span class="metric-label">Low Impact</span>
+            <strong>Administration</strong>
+            <small>Pearson correlation: 0.201</small>
+          </div>
+        </article>
+        <article class="panel matrix-panel chart-card">
+          <div class="panel-heading"><h3>Correlation Heatmap</h3><span>Numeric features</span></div>
+          <div class="chart-wrapper"><div id="correlationMatrix" class="plotly-chart"></div></div>
+        </article>
+        <article class="panel chart-card">
+          <div class="panel-heading"><h3>Marketing Spend vs Profit</h3><span>Pearson 0.748</span></div>
+          <div class="chart-wrapper"><div id="marketingScatterChart" class="plotly-chart"></div></div>
+        </article>
+        <article class="panel chart-card">
+          <div class="panel-heading"><h3>Feature Importance</h3><span>Regression</span></div>
+          <div class="chart-wrapper"><div id="importanceChart" class="plotly-chart"></div></div>
+        </article>
+        <article class="panel chart-card">
+          <div class="panel-heading"><h3>Profit Distribution</h3><span>50 records</span></div>
+          <div class="chart-wrapper"><div id="distributionChart" class="plotly-chart"></div></div>
+        </article>
+        <article class="panel ranking-panel">
+          <div class="panel-heading"><h3>Correlation Ranking</h3><span>Top predictors</span></div>
+          <div class="ranking-list">
+            <div><span>Top Driver</span><strong>R&D Spend</strong><em>0.973</em></div>
+            <div><span>Second Driver</span><strong>Marketing Spend</strong><em>0.748</em></div>
+            <div><span>Third Driver</span><strong>Administration</strong><em>0.201</em></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="model-analysis" class="section band page-section">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">Model Analysis</p>
+          <h2>Feature Selection Analysis</h2>
+        </div>
+      </div>
+      <div class="model-grid reveal">
+        <article class="feature-card"><span>1 Feature</span><strong>R&D Spend</strong><small>RMSE 8274 | R2 0.946</small></article>
+        <article class="feature-card best"><span>2 Features</span><strong>R&D + Marketing</strong><small>Best model | RMSE 8198 | R2 0.947</small></article>
+        <article class="feature-card"><span>3 Features</span><strong>R&D + Marketing + New York</strong><small>More complexity</small></article>
+        <article class="feature-card"><span>4 Features</span><strong>R&D + Marketing + New York + Florida</strong><small>Higher variance risk</small></article>
+        <article class="feature-card"><span>5 Features</span><strong>All Features</strong><small>Full model comparison</small></article>
+      </div>
+      <div class="model-chart-grid reveal">
+        <article class="panel chart-card">
+          <div class="panel-heading"><h3>RMSE by Number of Features</h3><span>Lower is better</span></div>
+          <div class="chart-wrapper"><div id="rmseChart" class="plotly-chart"></div></div>
+        </article>
+        <article class="panel chart-card">
+          <div class="panel-heading"><h3>R2 by Number of Features</h3><span>Higher is better</span></div>
+          <div class="chart-wrapper"><div id="r2Chart" class="plotly-chart"></div></div>
+        </article>
+      </div>
+      <div class="model-detail-grid reveal">
+        <article class="overfit-card">
+          <span class="summary-icon muted">OF</span>
+          <h3>Overfitting Explanation</h3>
+          <p>After the best two-feature model, adding more variables can increase RMSE, reduce R2, and make the model start fitting noise instead of business signal.</p>
+        </article>
+        <article class="selection-tabs">
+          <h3>Feature Selection Comparison</h3>
+          <div class="tab-buttons" role="tablist">
+            <button class="tab-button active" type="button" data-tab="sfs">SFS</button>
+            <button class="tab-button" type="button" data-tab="rfe">RFE</button>
+            <button class="tab-button" type="button" data-tab="selectkbest">SelectKBest</button>
+            <button class="tab-button" type="button" data-tab="lasso">Lasso</button>
+            <button class="tab-button" type="button" data-tab="randomforest">Random Forest</button>
+          </div>
+          <div class="tab-panel active" id="tab-sfs"><strong>SFS</strong><p>Sequential search favors R&D plus Marketing as a compact, stable feature set.</p></div>
+          <div class="tab-panel" id="tab-rfe"><strong>RFE</strong><p>Recursive elimination removes weak predictors and keeps the strongest investment variables.</p></div>
+          <div class="tab-panel" id="tab-selectkbest"><strong>SelectKBest</strong><p>Correlation-driven selection highlights R&D Spend as the top individual predictor.</p></div>
+          <div class="tab-panel" id="tab-lasso"><strong>Lasso</strong><p>Regularization can shrink weaker coefficients and reduce unnecessary complexity.</p></div>
+          <div class="tab-panel" id="tab-randomforest"><strong>Random Forest</strong><p>Tree-based importance can validate whether nonlinear signals support the regression findings.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="prediction" class="section band page-section">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">Simulator</p>
+          <h2>Prediction Simulator</h2>
+        </div>
+      </div>
+      <div class="predictor reveal">
+        <form id="predictionForm" class="prediction-form">
+          <div class="form-heading">
+            <span class="kpi-icon profit">AI</span>
+            <div><strong>Investment Inputs</strong><small>Estimate profit from planned spend</small></div>
+          </div>
+          <label>R&D Spend <input id="rdSpend" type="range" min="0" max="180000" step="1000" value="100000"><output id="rdSpendValue">$100,000</output></label>
+          <label>Marketing Spend <input id="marketingSpend" type="range" min="0" max="500000" step="1000" value="220000"><output id="marketingSpendValue">$220,000</output></label>
+          <label>Administration <input id="adminSpend" type="range" min="0" max="200000" step="1000" value="120000"><output id="adminSpendValue">$120,000</output></label>
+          <label>State
+            <select id="stateSelect">
+              <option>California</option>
+              <option>Florida</option>
+              <option>New York</option>
+            </select>
+          </label>
+          <button type="submit">Predict Profit</button>
+        </form>
+        <aside class="prediction-output" aria-live="polite">
+          <div class="result-icon">+</div>
+          <span>Predicted Profit</span>
+          <strong id="predictedProfit">$150,043</strong>
+          <small>Profit growth signal</small>
+          <p id="predictionNote">Estimated with a linear regression approximation trained on the 50-startup dataset.</p>
+        </aside>
+      </div>
+      <div class="planner-grid prediction-bottom-grid reveal">
+        <article class="panel chart-card">
+          <div class="panel-heading"><h3>Budget Allocation Pie Chart</h3><span>Live mix</span></div>
+          <div class="pie-chart-wrapper"><div id="budgetPieChart" class="plotly-chart compact-plot"></div></div>
+        </article>
+        <article class="panel whatif-panel">
+          <div class="panel-heading"><h3>What If Analysis</h3><span>+10% budget scenario</span></div>
+          <div class="whatif-list">
+            <div><span>R&D +10%</span><strong id="whatIfRd">+$0</strong></div>
+            <div><span>Marketing +10%</span><strong id="whatIfMarketing">+$0</strong></div>
+            <div><span>Administration +10%</span><strong id="whatIfAdmin">+$0</strong></div>
+          </div>
+        </article>
+        <article class="panel ai-recommendation-card ai-card insight-card">
+          <div class="illustration-badge">AI</div>
+          <div>
+            <span class="metric-label">AI Recommendation Card</span>
+            <h3>Investment Recommendation</h3>
+            <p id="aiRecommendation">Increase R&D investment while keeping marketing efficient and administration controlled.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="takeaways" class="section soft-section page-section">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">Strategy</p>
+          <h2>Strategic Takeaways</h2>
+        </div>
+      </div>
+      <div class="insight-grid reveal">
+        <article><span>PI</span><h3>Product Innovation</h3><strong>R&D Spend</strong><p>Correlation = 0.973. Prioritize product and technical investment as the core profit driver.</p><div class="analytics-illustration"><i></i><i></i><i></i></div></article>
+        <article><span>MA</span><h3>Marketing Amplifier</h3><strong>Marketing Spend</strong><p>Correlation = 0.748. Maintain a focused marketing budget to amplify proven product strength.</p><div class="machine-illustration"><i></i><i></i><i></i></div></article>
+        <article><span>CC</span><h3>Cost Control</h3><strong>Administration</strong><p>Correlation = 0.201. Control administrative cost because its direct profit signal is weaker.</p><div class="startup-illustration"><i></i><i></i><i></i></div></article>
+      </div>
+      <div class="section-heading compact-heading board-heading reveal">
+        <div>
+          <p class="eyebrow">Board Recommendations</p>
+          <h2>Strategic Capital Allocation</h2>
+        </div>
+      </div>
+      <div class="board-recommendations reveal">
+        <article><span class="summary-icon green">01</span><strong>Increase R&D Investment First</strong><p>Fund the highest-correlation growth driver before adding operational complexity.</p></article>
+        <article><span class="summary-icon">02</span><strong>Maintain Reasonable Marketing Budget</strong><p>Use marketing as a multiplier, especially when R&D strength is already visible.</p></article>
+        <article><span class="summary-icon muted">03</span><strong>Control Administration Cost</strong><p>Keep overhead lean and protect profit quality as the company scales.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>50 Startups Investment Analysis</span>
+    <span>GitHub Pages + Streamlit Cloud ready</span>
+  </footer>
+
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
