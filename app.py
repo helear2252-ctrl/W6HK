@@ -3,6 +3,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import streamlit as st
+import streamlit.components.v1 as components
 
 try:
     import plotly.express as px
@@ -26,6 +27,7 @@ except Exception:
 
 
 DATA_PATH = Path(__file__).with_name("50_Startups.csv")
+APP_DIR = Path(__file__).resolve().parent
 NUMERIC_COLUMNS = ["R&D Spend", "Administration", "Marketing Spend", "Profit"]
 
 
@@ -34,6 +36,42 @@ st.set_page_config(
     page_icon=":chart_with_upwards_trend:",
     layout="wide",
 )
+
+
+def load_frontend_app() -> str:
+    html = (APP_DIR / "index.html").read_text(encoding="utf-8")
+    css = (APP_DIR / "style.css").read_text(encoding="utf-8")
+    js = (APP_DIR / "script.js").read_text(encoding="utf-8")
+
+    html = html.replace('<link rel="stylesheet" href="style.css">', f"<style>{css}</style>")
+    html = html.replace('<script src="script.js"></script>', f"<script>{js}</script>")
+    return html
+
+
+st.markdown(
+    """
+    <style>
+    .main .block-container {
+        max-width: none;
+        padding: 0;
+    }
+    header[data-testid="stHeader"],
+    footer,
+    #MainMenu {
+        display: none;
+    }
+    iframe {
+        display: block;
+        width: 100%;
+        border: 0;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+components.html(load_frontend_app(), height=7600, scrolling=True)
+st.stop()
 
 
 st.markdown(
