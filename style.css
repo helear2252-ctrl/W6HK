@@ -2139,3 +2139,463 @@ footer {
     overflow-x: auto;
   }
 }
+
+/* ==========================================================================
+   Premium Corporate SaaS Dashboard UI Refinements & Overrides
+   ========================================================================== */
+
+/* Core Palette Overrides */
+:root {
+  --blue: #2563EB;
+  --blue-dark: #1D4ED8;
+  --green: #10B981;
+  --ink: #0F172A;
+  --text: #334155;
+  --muted: #64748B;
+  --line: rgba(148, 163, 184, 0.18);
+  --surface: #FFFFFF;
+  --card: #FFFFFF;
+  --soft: #F8FAFC;
+  --radius: 24px;
+  --radius-lg: 28px;
+  --shadow: 0 20px 40px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.02);
+  --shadow-soft: 0 8px 30px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.01);
+}
+
+body {
+  background-color: #F8FAFC;
+  color: var(--ink);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Card & Panel Refinements */
+.kpi-card, .panel, .overfit-card, .selection-tabs, .boardroom-card, .ranking-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(148, 163, 184, 0.18) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-soft) !important;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease !important;
+}
+
+.kpi-card:hover, .panel:hover, .overfit-card:hover, .selection-tabs:hover, .boardroom-card:hover, .ranking-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow) !important;
+  border-color: rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Button Refinements */
+.primary-action, .prediction-form button {
+  background: linear-gradient(135deg, #2563EB, #3B82F6) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.16) !important;
+  font-weight: 600;
+  border-radius: 14px;
+  padding: 12px 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease !important;
+}
+.primary-action:hover, .prediction-form button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.24) !important;
+  filter: brightness(1.05);
+}
+
+.secondary-action {
+  background: #FFFFFF !important;
+  color: var(--ink) !important;
+  border: 1px solid rgba(148, 163, 184, 0.3) !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.02) !important;
+  font-weight: 600;
+  border-radius: 14px;
+  padding: 12px 24px;
+}
+.secondary-action:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05) !important;
+  background: #F8FAFC !important;
+}
+
+/* Navbar Enhancements */
+.site-header {
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(20px) saturate(1.4) !important;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02) !important;
+}
+.site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08) !important;
+}
+
+.nav-links a {
+  color: var(--muted) !important;
+  font-weight: 600 !important;
+  transition: color 0.2s ease;
+}
+.nav-links a.active, .nav-links a:hover {
+  color: var(--blue) !important;
+}
+.nav-links a::after {
+  background: var(--blue) !important;
+}
+
+/* Hero Section Enhancements */
+.hero-showcase {
+  background: 
+    radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.08), transparent 35%),
+    radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.05), transparent 30%),
+    linear-gradient(180deg, #FFFFFF, #F8FAFC) !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+.hero-section::after {
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.04) 1px, transparent 1px) !important;
+}
+.hero-main-mockup {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  box-shadow: 0 40px 100px rgba(15, 23, 42, 0.12) !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+/* Dashboard & Chart Cards */
+.panel-heading {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 4px !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12) !important;
+  padding-bottom: 12px !important;
+  margin-bottom: 16px !important;
+}
+.panel-heading h3 {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: var(--ink) !important;
+}
+.panel-heading span {
+  font-size: 0.8rem !important;
+  color: var(--muted) !important;
+  font-weight: 400 !important;
+}
+.chart-footer {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  font-size: 0.82rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.chart-footer::before {
+  content: "💡";
+}
+
+/* Prediction Section Layout */
+.predictor {
+  display: grid !important;
+  grid-template-columns: 1.1fr 0.9fr !important;
+  gap: 32px !important;
+  align-items: stretch !important;
+}
+.prediction-form {
+  padding: 32px !important;
+  background: #FFFFFF !important;
+}
+.prediction-output {
+  background: linear-gradient(135deg, #FFFFFF, #ECFDF5) !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+  box-shadow: 0 10px 40px rgba(16, 185, 129, 0.04) !important;
+  padding: 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+.prediction-output:hover {
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  box-shadow: 0 20px 50px rgba(16, 185, 129, 0.08) !important;
+}
+.result-icon {
+  background: linear-gradient(135deg, #10B981, #34D399) !important;
+  box-shadow: 0 12px 24px rgba(16, 185, 129, 0.2) !important;
+  border-radius: 50% !important;
+  width: 60px !important;
+  height: 60px !important;
+  margin-bottom: 20px !important;
+}
+.prediction-output span {
+  font-size: 0.85rem !important;
+  letter-spacing: 0.05em !important;
+}
+.prediction-output strong {
+  color: #10B981 !important;
+  font-size: 3.5rem !important;
+  font-weight: 800 !important;
+  margin: 12px 0 !important;
+}
+
+/* Boardroom Strategy Page */
+.boardroom-card {
+  padding: 32px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  min-height: 340px !important;
+  background: #FFFFFF !important;
+}
+.boardroom-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.boardroom-icon-badge {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+.boardroom-icon-badge.innovation {
+  background: linear-gradient(135deg, #2563EB, #60A5FA);
+}
+.boardroom-icon-badge.amplifier {
+  background: linear-gradient(135deg, #10B981, #34D399);
+}
+.boardroom-icon-badge.control {
+  background: linear-gradient(135deg, #475569, #94A3B8);
+}
+.boardroom-title-group h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.boardroom-metric-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.boardroom-metric-tag.rd {
+  background: #EFF6FF;
+  color: #2563EB;
+}
+.boardroom-metric-tag.marketing {
+  background: #ECFDF5;
+  color: #10B981;
+}
+.boardroom-metric-tag.admin {
+  background: #F8FAFC;
+  color: #64748B;
+}
+.boardroom-recommendation {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Leaderboard Page Styling */
+.leaderboard-grid-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.rankings-row {
+  display: grid;
+  gap: 24px;
+}
+.rankings-row.row-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.rankings-row.row-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ranking-card {
+  padding: 24px !important;
+}
+.ranking-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+.ranking-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #F8FAFC;
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.ranking-list-item:hover {
+  background: #F1F5F9;
+  transform: translateX(4px);
+}
+.rank-badge {
+  font-size: 1.1rem;
+  width: 28px;
+  text-align: center;
+  font-weight: 700;
+}
+.rank-num-badge {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  background: #E2E8F0;
+}
+.ranking-list-item .startup-name {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+.ranking-list-item .rank-value {
+  font-weight: 700;
+  color: var(--blue);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+#roiRankList .rank-value {
+  color: #2563EB;
+}
+#overallRankList .rank-value {
+  color: #10B981;
+}
+
+/* Full Ranking Table Design */
+.table-panel {
+  padding: 32px !important;
+  background: #FFFFFF !important;
+}
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  padding-bottom: 20px;
+}
+.table-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.search-box-wrap input {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  font-size: 0.9rem;
+  outline: none;
+  min-width: 240px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.search-box-wrap input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.table-limit-switch {
+  display: flex;
+  background: #F1F5F9;
+  padding: 4px;
+  border-radius: 10px;
+}
+.limit-btn {
+  border: none;
+  background: transparent;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.limit-btn.active {
+  background: #FFFFFF;
+  color: var(--ink);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.leaderboard-table th {
+  padding: 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  border-bottom: 2px solid rgba(148, 163, 184, 0.12);
+}
+.leaderboard-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.leaderboard-table th.sortable:hover {
+  color: var(--blue);
+}
+.leaderboard-table td {
+  padding: 16px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+  font-size: 0.95rem;
+  color: var(--text);
+}
+.leaderboard-table tr:hover td {
+  background-color: #F8FAFC;
+}
+
+.tbl-startup-name {
+  font-weight: 600;
+  color: var(--ink);
+}
+.tbl-state-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #F1F5F9;
+  color: #64748B;
+  margin-left: 6px;
+}
+.sort-indicator {
+  font-size: 0.8rem;
+  margin-left: 4px;
+  color: rgba(148, 163, 184, 0.6);
+}
+.active-sort .sort-indicator {
+  color: var(--blue);
+}
+
+/* Responsiveness overrides */
+@media (max-width: 1024px) {
+  .rankings-row.row-three,
+  .rankings-row.row-two {
+    grid-template-columns: 1fr;
+  }
+  .predictor {
+    grid-template-columns: 1fr !important;
+  }
+}

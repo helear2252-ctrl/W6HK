@@ -89,6 +89,161 @@ const extendedStartupData = [
   { rd: 512000, admin: 217000, marketing: 621000, profit: 563800 }
 ];
 
+// Leaderboard state mappings from 50_Startups.csv
+const startupStates = [
+  "New York", "California", "Florida", "New York", "Florida", "New York", "California", "Florida", "New York", "California",
+  "Florida", "California", "Florida", "California", "Florida", "New York", "California", "New York", "Florida", "New York",
+  "California", "New York", "Florida", "Florida", "New York", "California", "Florida", "New York", "Florida", "New York",
+  "Florida", "New York", "California", "Florida", "California", "New York", "Florida", "California", "New York", "California",
+  "New York", "California", "California", "Florida", "California", "New York", "California", "New York", "Florida", "California",
+  "New York"
+];
+
+// Process startups for ranking and efficiency metrics
+const processedStartups = startupData.map((d, index) => {
+  const name = `Startup ${index + 1}`;
+  const state = startupStates[index] || "California";
+  
+  // ROI Score: Profit / (R&D Spend + Marketing Spend + Administration)
+  const totalSpend = d.rd + d.marketing + d.admin;
+  const roi = totalSpend > 0 ? (d.profit / totalSpend) : 0;
+  
+  // Marketing Efficiency: Profit / Marketing Spend
+  const mktEff = d.marketing > 0 ? (d.profit / d.marketing) : 0;
+  
+  return {
+    ...d,
+    name,
+    state,
+    roi,
+    mktEff
+  };
+});
+
+// Helper to normalize values to 0 - 100 range
+function getNormalizedValues(list, key) {
+  const values = list.map(d => d[key]);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const range = max - min || 1;
+  return list.map(d => ((d[key] - min) / range) * 100);
+}
+
+const profitNormScores = getNormalizedValues(processedStartups, "profit");
+const roiNormScores = getNormalizedValues(processedStartups, "roi");
+const mktEffNormScores = getNormalizedValues(processedStartups, "mktEff");
+
+const leaderboardData = processedStartups.map((d, index) => {
+  const profitScore = profitNormScores[index];
+  const roiScore = roiNormScores[index];
+  const mktEffScore = mktEffNormScores[index];
+  
+  // Overall Startup Score: Profit Score 40%, ROI Score 40%, Marketing Efficiency 20%
+  const overallScore = 0.4 * profitScore + 0.4 * roiScore + 0.2 * mktEffScore;
+  
+  return {
+    ...d,
+    profitScore,
+    roiScore,
+    mktEffScore,
+    overallScore
+  };
+});
+
+// Assign fixed rank based on Overall Score
+const sortedByOverallScore = [...leaderboardData].sort((a, b) => b.overallScore - a.overallScore);
+leaderboardData.forEach(d => {
+  d.rank = sortedByOverallScore.findIndex(item => item.name === d.name) + 1;
+});
+
+// Render cards for Leaderboard Top 10 rankings
+function renderRankingCard(list, containerId, key, formatter) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  
+  const sorted = [...list].sort((a, b) => b[key] - a[key]).slice(0, 10);
+  
+  let html = '<div class="ranking-card-list">';
+  sorted.forEach((item, index) => {
+    let medal = "";
+    if (index === 0) medal = "🥇";
+    else if (index === 1) medal = "🥈";
+    else if (index === 2) medal = "🥉";
+    else medal = `<span class="rank-num-badge">${index + 1}</span>`;
+    
+    html += `
+      <div class="ranking-list-item">
+        <span class="rank-badge">${medal}</span>
+        <span class="startup-name" title="${item.name}">${item.name}</span>
+        <span class="rank-value">${formatter(item[key])}</span>
+      </div>
+    `;
+  });
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+// Full ranking table state variables
+let tableSearchQuery = "";
+let tableLimit = "10";
+let tableSortField = "rank";
+let tableSortDir = "asc";
+
+function renderFullTable() {
+  const tbody = document.getElementById("tableBody");
+  if (!tbody) return;
+  
+  // Filter by search query
+  let filtered = leaderboardData.filter(d => {
+    const q = tableSearchQuery.toLowerCase();
+    return d.name.toLowerCase().includes(q) || d.state.toLowerCase().includes(q);
+  });
+  
+  // Sort data
+  filtered.sort((a, b) => {
+    let valA = a[tableSortField];
+    let valB = b[tableSortField];
+    
+    if (tableSortField === "overall") {
+      valA = a.overallScore;
+      valB = b.overallScore;
+    }
+    
+    if (typeof valA === "string") {
+      return tableSortDir === "asc" ? valA.localeCompare(valB) : valB.localeCompare(valA);
+    } else {
+      return tableSortDir === "asc" ? valA - valB : valB - valA;
+    }
+  });
+  
+  // Slice by limit
+  if (tableLimit !== "all") {
+    filtered = filtered.slice(0, Number(tableLimit));
+  }
+  
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--muted); padding: 32px 0;">No startups matched the query.</td></tr>`;
+    return;
+  }
+  
+  let html = "";
+  filtered.forEach(d => {
+    html += `
+      <tr>
+        <td><strong>${d.rank}</strong></td>
+        <td><span class="tbl-startup-name">${d.name}</span> <span class="tbl-state-badge">${d.state}</span></td>
+        <td>${money.format(d.profit)}</td>
+        <td>${money.format(d.rd)}</td>
+        <td>${money.format(d.admin)}</td>
+        <td>${money.format(d.marketing)}</td>
+        <td style="color: var(--blue); font-weight: 600;">${d.roi.toFixed(3)}</td>
+        <td style="color: var(--green); font-weight: 700;">${d.overallScore.toFixed(1)}</td>
+      </tr>
+    `;
+  });
+  tbody.innerHTML = html;
+}
+
 function setupCanvas(canvas) {
   const ratio = window.devicePixelRatio || 1;
   const rect = canvas.getBoundingClientRect();
@@ -574,6 +729,54 @@ function drawBudgetPie(rd = 100000, marketing = 220000, admin = 120000) {
   }, plotlyConfig());
 }
 
+function drawPlotlyLeaderboard() {
+  if (!canPlot("leaderboardProfitChart") || !canPlot("leaderboardRoiChart")) return;
+  
+  // Top 10 Profit
+  const top10Profit = [...leaderboardData]
+    .sort((a, b) => b.profit - a.profit)
+    .slice(0, 10)
+    .reverse();
+    
+  Plotly.react("leaderboardProfitChart", [{
+    x: top10Profit.map(d => d.profit),
+    y: top10Profit.map(d => d.name),
+    type: "bar",
+    orientation: "h",
+    marker: {
+      color: "#2563EB",
+      opacity: 0.85,
+      line: { color: "#ffffff", width: 1.5 }
+    },
+    hovertemplate: "%{y}<br>Profit: $%{x:,.0f}<extra></extra>"
+  }], {
+    ...plotlyLayout(chartHeight("leaderboardProfitChart", 360)),
+    margin: { l: 90, r: 20, t: 10, b: 40 }
+  }, plotlyConfig());
+  
+  // Top 10 ROI
+  const top10Roi = [...leaderboardData]
+    .sort((a, b) => b.roi - a.roi)
+    .slice(0, 10)
+    .reverse();
+    
+  Plotly.react("leaderboardRoiChart", [{
+    x: top10Roi.map(d => d.roi),
+    y: top10Roi.map(d => d.name),
+    type: "bar",
+    orientation: "h",
+    marker: {
+      color: "#10B981",
+      opacity: 0.85,
+      line: { color: "#ffffff", width: 1.5 }
+    },
+    hovertemplate: "%{y}<br>ROI: %{x:.3f}<extra></extra>"
+  }], {
+    ...plotlyLayout(chartHeight("leaderboardRoiChart", 360)),
+    margin: { l: 90, r: 20, t: 10, b: 40 }
+  }, plotlyConfig());
+}
+
 function drawAll() {
   drawHero();
   renderMatrix();
@@ -584,6 +787,7 @@ function drawAll() {
   drawPlotlyLine("rmseChart", [8274, 8198, 8420, 8910, 9340], "#65a30d", ["1 Feature", "2 Features", "3 Features", "4 Features", "5 Features"]);
   drawPlotlyLine("r2Chart", [0.946, 0.947, 0.941, 0.934, 0.926], "#2563eb", ["1 Feature", "2 Features", "3 Features", "4 Features", "5 Features"]);
   drawBudgetPie();
+  drawPlotlyLeaderboard();
 }
 
 window.addEventListener("resize", drawAll);
@@ -608,4 +812,58 @@ document.addEventListener("DOMContentLoaded", () => {
   setupReveal();
   setupPrediction();
   setupTabs();
+
+  // Leaderboard Initialization
+  renderRankingCard(leaderboardData, "profitRankList", "profit", (v) => money.format(v));
+  renderRankingCard(leaderboardData, "rdRankList", "rd", (v) => money.format(v));
+  renderRankingCard(leaderboardData, "marketingRankList", "marketing", (v) => money.format(v));
+  renderRankingCard(leaderboardData, "roiRankList", "roi", (v) => v.toFixed(3));
+  renderRankingCard(leaderboardData, "overallRankList", "overallScore", (v) => v.toFixed(1));
+  renderFullTable();
+
+  // Full table interactions
+  const searchInput = document.getElementById("tableSearch");
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      tableSearchQuery = e.target.value;
+      renderFullTable();
+    });
+  }
+
+  const limitButtons = document.querySelectorAll(".limit-btn");
+  limitButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      limitButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      tableLimit = btn.dataset.limit;
+      renderFullTable();
+    });
+  });
+
+  const sortHeaders = document.querySelectorAll(".leaderboard-table th.sortable");
+  sortHeaders.forEach(th => {
+    th.addEventListener("click", () => {
+      const field = th.dataset.sort;
+      if (tableSortField === field) {
+        tableSortDir = tableSortDir === "asc" ? "desc" : "asc";
+      } else {
+        tableSortField = field;
+        tableSortDir = "desc";
+      }
+
+      sortHeaders.forEach(h => {
+        h.classList.remove("active-sort", "asc", "desc");
+        const ind = h.querySelector(".sort-indicator");
+        if (ind) ind.textContent = "↕";
+      });
+
+      th.classList.add("active-sort", tableSortDir);
+      const indicator = th.querySelector(".sort-indicator");
+      if (indicator) {
+        indicator.textContent = tableSortDir === "asc" ? "↑" : "↓";
+      }
+
+      renderFullTable();
+    });
+  });
 });
